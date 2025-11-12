@@ -1,3 +1,2 @@
-# Oyku-Akyol
-Tahterevalli Simülasyonu
-Bu projede, kullanıcının tahterevalliye eklediği ağırlıklara göre denge durumunu gösteren bir simülasyon yapılmıştır. Projede yalnızca HTML, CSS ve saf JavaScript kullanılmıştır
+# Seesaw Simulation
+This project simulates the balance of a seesaw based on the user's added weights. The project uses only HTML, CSS, and pure JavaScript.

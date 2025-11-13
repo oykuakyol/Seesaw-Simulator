@@ -1,0 +1,109 @@
+body {
+  background: #101820;
+  color: white;
+  font-family: sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+h2 {
+  margin-top: 15px;
+}
+
+.seesaw-container {
+  position: relative;
+  width: 600px;
+  height: 300px;
+  margin: 40px auto;
+}
+
+#pivot {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 50px solid #555;;
+  z-index: 5;
+}
+
+#plank {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  width: 500px;
+  height: 25px;
+  background: #b5651d;
+  border-radius: 10px;
+  transform: translateX(-50%) rotate(0deg);
+  transform-origin: center bottom;
+  transition: transform 0.5s ease;
+}
+
+.weights {
+ display: flex;
+  justify-content: center;
+  align-items: flex-end; /* kutuların altını hizalar */
+  gap: 10px;
+  margin-top: 100px;
+  position: relative; /* pseudo-element için gerekli */
+  height: 100px;      /* container yüksekliği yeterli olmalı */
+
+}
+
+.weights::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;       /* çizgiyi biraz daha aşağıya kaydır */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;        /* yatay uzunluğu */
+  height: 2px;         /* çizgi kalınlığı */
+  background: #444;
+  border-radius: 1px;
+}
+
+
+.weight {
+
+           /* gerekirse ekle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+
+
+
+}
+
+.weight:active {
+  transform: scale(1.1);
+  cursor: grabbing;
+}
+
+
+/* --- Ağırlıkların renk ve boyutları --- */
+.weight[data-mass="1"]  { background: #00e676; width: 35px; height: 35px; }
+.weight[data-mass="2"]  { background: #69f0ae; width: 40px; height: 40px; }
+.weight[data-mass="3"]  { background: #00b0ff; width: 45px; height: 45px; }
+.weight[data-mass="4"]  { background: #2979ff; width: 50px; height: 50px; }
+.weight[data-mass="5"]  { background: #651fff; width: 55px; height: 55px; }
+.weight[data-mass="6"]  { background: #aa00ff; width: 60px; height: 60px; }
+.weight[data-mass="7"]  { background: #d500f9; width: 65px; height: 65px; }
+.weight[data-mass="8"]  { background: #ff1744; width: 70px; height: 70px; }
+.weight[data-mass="9"]  { background: #ff9100; width: 75px; height: 75px; }
+.weight[data-mass="10"] { background: #ffea00; color: #000; width: 80px; height: 80px; }
+
+
+/* Tahterevalli üstündeki kutular */
+.on-plank {
+  position: absolute;
+  bottom: 20px;
+  transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 10;
+}

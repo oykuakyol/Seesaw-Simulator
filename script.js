@@ -4,7 +4,7 @@ const weights = document.querySelectorAll(".weight");
 let placedWeights = []; // { mass, distance, element }
 const maxPerSide = 10;
 
-// Alttaki ağırlıkları sürüklenebilir yap
+// Make the bottom weights draggable
 weights.forEach(w => {
   w.draggable = true;
   w.addEventListener("dragstart", e => {
@@ -12,7 +12,7 @@ weights.forEach(w => {
   });
 });
 
-// Tahterevalliye sürükleme olayları
+// Seesaw dragging
 plank.addEventListener("dragover", e => e.preventDefault());
 plank.addEventListener("drop", handleDrop);
 
@@ -28,30 +28,30 @@ function handleDrop(e) {
   const sideCount = placedWeights.filter(w => w.side === side).length;
   if (sideCount >= maxPerSide) return; // limit 10 per side
 
-  // Yeni ağırlık (klon) oluştur
+  // Create new weight
   const clone = document.createElement("div");
   clone.className = "weight on-plank";
   clone.style.left = `${x}px`;
   clone.textContent = mass;
   clone.dataset.mass = mass;
 
-  // Ağırlığı tahtaya ekle
+  // Add weight to the plank
   plank.appendChild(clone);
 
-  // Listeye kaydet
+  // Add to the list
   placedWeights.push({ mass, distance, element: clone, side });
 
   updateSeesaw();
 
-  // 🔥 TIKLAMA İLE SİLME (geliştirilmiş)
+  // Delete weight by click
   clone.addEventListener("click", () => {
-    // DOM'dan kaldır
+    // Remove from DOM
     clone.remove();
 
-    // Listeden kaldır
+    // Remove from list
     placedWeights = placedWeights.filter(w => w.element !== clone);
 
-    // Dengeyi yeniden hesapla
+    // Re-calculate the balance
     updateSeesaw();
   });
 }
@@ -62,13 +62,13 @@ function updateSeesaw() {
     return;
   }
 
-  // Toplam moment (tork)
+  // Total moment (torque)
   let totalMoment = 0;
   placedWeights.forEach(w => {
     totalMoment += w.mass * w.distance;
   });
 
-  // Açıyı hesapla ve uygula
+  // Calculate the angel and apply
   const angle = Math.max(-30, Math.min(30, totalMoment * 0.02));
   plank.style.transform = `translateX(-50%) rotate(${angle}deg)`;
 }
